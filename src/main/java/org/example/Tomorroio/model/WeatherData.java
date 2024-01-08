@@ -8,6 +8,8 @@ import kong.unirest.json.JSONArray;
 import kong.unirest.json.JSONObject;
 import org.jfree.data.xy.XYSeries;
 
+import java.time.Instant;
+
 
 public class WeatherData implements WeatherModel{
     private String apiKey = "caqZdWtMCbxjvLTlS3knSN7spqmj2LhD";
@@ -71,7 +73,31 @@ public class WeatherData implements WeatherModel{
                     JSONObject minuteData = minutelyTimelines.getJSONObject(i);
                     String time = minuteData.getString("time");
                     JSONObject values = minuteData.getJSONObject("values");
+                    double dataValue = 0.0;
+                    switch (dataType.toLowerCase()) {
+                        case "temperature":
+                            dataValue = values.getDouble("temperature");
+                            break;
+                        case "humidity":
+                            dataValue = values.getDouble("humidity");
+                            break;
+                        case "windspeed":
+                            dataValue = values.getDouble("windSpeed");
+                            break;
+                        case "windgust":
+                            dataValue = values.getDouble("windGust");
+                            break;
+                        case "pressuresurfacelevel":
+                            dataValue = values.getDouble("pressureSurfaceLevel");
+                            break;
+                        case "cloudcover":
+                            dataValue = values.getDouble("cloudCover");
+                            break;
+                    }
+                    Instant instant = Instant.parse(time);
+                    series.add(instant.toEpochMilli(), dataValue);
                 }
+                return series;
             } else {
                 System.err.println("Error: Estructura JSON no válida");
             }
