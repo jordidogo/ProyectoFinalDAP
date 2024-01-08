@@ -1,5 +1,10 @@
 package org.example.Tomorroio.model;
 
+import kong.unirest.HttpResponse;
+import kong.unirest.JsonNode;
+import kong.unirest.Unirest;
+import kong.unirest.UnirestException;
+import kong.unirest.json.JSONObject;
 import org.jfree.data.xy.XYSeries;
 
 
@@ -49,6 +54,19 @@ public class WeatherData implements WeatherModel{
 
     public XYSeries fetchDataSeries(String dataType, double latitude, double longitude) {
         XYSeries series = new XYSeries(dataType);
+        try {
+            HttpResponse<JsonNode> response = Unirest.get("https://api.tomorrow.io/v4/weather/forecast")
+                    .queryString("location", latitude + "," + longitude)
+                    .queryString("apikey", apiKey)
+                    .header("accept", "application/json")
+                    .asJson();
+
+            JSONObject jsonResponse = new JSONObject(response.getBody().toString());
+
+        } catch (UnirestException e) {
+            e.printStackTrace();
+        }
         return null;
     }
+
 }
