@@ -4,6 +4,7 @@ import kong.unirest.HttpResponse;
 import kong.unirest.JsonNode;
 import kong.unirest.Unirest;
 import kong.unirest.UnirestException;
+import kong.unirest.json.JSONArray;
 import kong.unirest.json.JSONObject;
 import org.jfree.data.xy.XYSeries;
 
@@ -63,6 +64,17 @@ public class WeatherData implements WeatherModel{
 
             JSONObject jsonResponse = new JSONObject(response.getBody().toString());
 
+            if (jsonResponse.has("timelines")) {
+                JSONArray minutelyTimelines = jsonResponse.getJSONObject("timelines").getJSONArray("minutely");
+
+                for (int i = 0; i < minutelyTimelines.length(); i++) {
+                    JSONObject minuteData = minutelyTimelines.getJSONObject(i);
+                    String time = minuteData.getString("time");
+                    JSONObject values = minuteData.getJSONObject("values");
+                }
+            } else {
+                System.err.println("Error: Estructura JSON no válida");
+            }
         } catch (UnirestException e) {
             e.printStackTrace();
         }
