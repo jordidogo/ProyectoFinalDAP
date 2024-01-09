@@ -9,6 +9,7 @@ import javax.swing.*;
 
 public class WeatherChartView extends JFrame implements WeatherView {
     private WeatherData weatherData;
+    private ChartStrategy chartStrategy;
 
 
     public WeatherChartView(String title, WeatherData weatherData) {
