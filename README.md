@@ -13,7 +13,7 @@ WeatherAPP es una aplicación en Java que implementa un sistema de observación 
 
 - **Datos Históricos del Clima:** A través de la API de Tomorrow.io, WeatherAPP recopila y muestra gráficos basados en registros históricos, proporcionando una visión profunda de las tendencias climáticas pasadas.
 
-- **Patrones de Diseño Avanzados:** Implementa los patrones de diseño Modelo-Vista-Controlador, Factory y Estrategia, asegurando un código robusto y fácil de mantener.
+- **Patrones de Diseño Avanzados:** Implementa los patrones de diseño Modelo-Vista-Controlador, Factory Method y Estrategia, asegurando un código robusto y fácil de mantener.
 
 ## Instrucciones de Uso
 
