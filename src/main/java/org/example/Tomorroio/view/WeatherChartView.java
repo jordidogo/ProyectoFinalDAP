@@ -3,6 +3,9 @@ package org.example.Tomorroio.view;
 
 import org.example.Tomorroio.model.WeatherData;
 
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
 import javax.swing.*;
@@ -40,6 +43,19 @@ public class WeatherChartView extends JFrame implements WeatherView {
         addChartPanel("WindGust", "Time", "Wind Gust (m/s)", convertToXYSeriesCollection(weatherData.fetchDataSeries("windGust"))); // Added new chart panel
         pack();
         setLocationRelativeTo(null);
+    }
+
+    private void addChartPanel(String chartType, String xAxisLabel, String yAxisLabel, XYSeriesCollection dataset) {
+        JFreeChart chart = chartStrategy.createChart(chartType, xAxisLabel, yAxisLabel, dataset);
+        ChartPanel chartPanel = new ChartPanel(chart);
+        chartPanel.setPreferredSize(new Dimension(400, 300));
+        add(chartPanel);
+    }
+
+    private XYSeriesCollection convertToXYSeriesCollection(XYSeries series) {
+        XYSeriesCollection collection = new XYSeriesCollection();
+        collection.addSeries(series);
+        return collection;
     }
 
     public void updateChart(String chartType, XYSeriesCollection newDataset) {
