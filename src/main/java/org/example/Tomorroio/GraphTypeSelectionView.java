@@ -17,9 +17,27 @@ public class GraphTypeSelectionView extends JFrame {
 
         okButton = new JButton("OK");
 
+        setLayout(new FlowLayout());
+        add(new JLabel("Tipo de Grafica:"));
+        add(graphTypeComboBox);
+        add(new JLabel("Ciudad:"));
+        add(cityComboBox); // Añadir al layout
+        add(okButton);
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setLocationRelativeTo(null);
+    }
+
+    public void addOkButtonListener(ActionListener listener) {
+        okButton.addActionListener(listener);
+    }
+
+    public String getSelectedGraphType() {
+        return (String) graphTypeComboBox.getSelectedItem();
+    }
+    public String getSelectedCity() {
+        return (String) cityComboBox.getSelectedItem();
     }
 }
 
