@@ -59,5 +59,32 @@ public class WeatherChartView extends JFrame implements WeatherView {
     }
 
     public void updateChart(String chartType, XYSeriesCollection newDataset) {
+        switch (chartType) {
+            case "Temperature":
+                temperatureDataset.removeAllSeries();
+                temperatureDataset.addSeries(newDataset.getSeries(0));
+                break;
+            case "Humidity":
+                humidityDataset.removeAllSeries();
+                humidityDataset.addSeries(newDataset.getSeries(0));
+                break;
+            case "WindSpeed":
+                windSpeedDataset.removeAllSeries();
+                windSpeedDataset.addSeries(newDataset.getSeries(0));
+                break;
+            case "PressureSurfaceLevel":
+                pressureDataset.removeAllSeries();
+                pressureDataset.addSeries(newDataset.getSeries(0));
+                break;
+            case "CloudCover":
+                cloudCoverDataset.removeAllSeries();
+                cloudCoverDataset.addSeries(newDataset.getSeries(0));
+                break;
+            case "PrecipitationProbability":
+                windGustDataset.removeAllSeries();
+                windGustDataset.addSeries(newDataset.getSeries(0));
+                break;
+        }
+        repaint();
     }
 }
