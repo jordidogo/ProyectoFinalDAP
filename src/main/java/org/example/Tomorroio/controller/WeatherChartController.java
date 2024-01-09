@@ -19,9 +19,9 @@ public class WeatherChartController implements WeatherController {
             WeatherData weatherData,
             WeatherView chartView,
             TemperatureDatasetFactory temperatureDatasetFactory,
-            HumidityDatasetFactory humidityDatasetFactory
+            HumidityDatasetFactory humidityDatasetFactory,
             WindSpeedDatasetFactory windSpeedDatasetFactory,
-            PressureDatasetFactory pressureDatasetFactory
+            PressureDatasetFactory pressureDatasetFactory,
             CloudCoverDatasetFactory cloudCoverDatasetFactory,
             WindGustDatasetFactory windGustDatasetFactory) {
 
