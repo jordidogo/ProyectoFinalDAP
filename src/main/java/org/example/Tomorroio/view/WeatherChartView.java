@@ -19,9 +19,11 @@ public class WeatherChartView extends JFrame implements WeatherView {
     private XYSeriesCollection windGustDataset = new XYSeriesCollection(); // Added new dataset
 
 
-    public WeatherChartView(String title, WeatherData weatherData) {
+    public WeatherChartView(String title, ChartStrategy chartStrategy, WeatherData weatherData) {
         super(title);
+        this.chartStrategy = chartStrategy;
         this.weatherData = weatherData;
+        createAndShowUI();
     }
 
     public void updateChart(String chartType, XYSeriesCollection newDataset) {
