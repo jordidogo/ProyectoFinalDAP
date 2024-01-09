@@ -38,10 +38,14 @@ public class WeatherChartController implements WeatherController {
             XYSeriesCollection humidityDataset = humidityDatasetFactory.createDataset();
             XYSeriesCollection windSpeedDataset = windSpeedDatasetFactory.createDataset();
             XYSeriesCollection pressureDataset = pressureDatasetFactory.createDataset();
+            XYSeriesCollection cloudCoverDataset = cloudCoverDatasetFactory.createDataset();
+            XYSeriesCollection windGustDataset = windGustDatasetFactory.createDataset();
 
             chartView.updateChart("Temperature", temperatureDataset);
             chartView.updateChart("Humidity", humidityDataset);
             chartView.updateChart("WindSpeed", windSpeedDataset);
             chartView.updateChart("PressureSurfaceLevel", pressureDataset);
+            chartView.updateChart("CloudCover", cloudCoverDataset);
+            chartView.updateChart("WindGust", windGustDataset);
         }
     }
