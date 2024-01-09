@@ -3,6 +3,7 @@ package org.example.Tomorroio.view;
 
 import org.example.Tomorroio.model.WeatherData;
 
+import org.example.Tomorroio.view.strategy.ChartStrategy;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.xy.XYSeries;
