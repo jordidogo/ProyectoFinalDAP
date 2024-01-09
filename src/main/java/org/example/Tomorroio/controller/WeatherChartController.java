@@ -21,7 +21,9 @@ public class WeatherChartController implements WeatherController {
             TemperatureDatasetFactory temperatureDatasetFactory,
             HumidityDatasetFactory humidityDatasetFactory
             WindSpeedDatasetFactory windSpeedDatasetFactory,
-            PressureDatasetFactory pressureDatasetFactory) {
+            PressureDatasetFactory pressureDatasetFactory
+            CloudCoverDatasetFactory cloudCoverDatasetFactory,
+            WindGustDatasetFactory windGustDatasetFactory) {
 
         this.weatherData = weatherData;
         this.chartView = chartView;
