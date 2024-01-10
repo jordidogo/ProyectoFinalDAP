@@ -1,0 +1,189 @@
+@startuml
+
+title __PROYECTOFINALDAP's Class Diagram__\n
+
+  namespace org.example.Tomorroio {
+    class org.example.Tomorroio.GraphTypeSelectionView {
+    }
+  }
+  
+
+  namespace org.example.Tomorroio {
+    class org.example.Tomorroio.WeatherApp {
+    }
+  }
+  
+
+  namespace org.example.Tomorroio {
+    namespace controller {
+      class org.example.Tomorroio.controller.WeatherChartController {
+      }
+    }
+  }
+  
+
+  namespace org.example.Tomorroio {
+    namespace controller {
+      interface org.example.Tomorroio.controller.WeatherController {
+      }
+    }
+  }
+  
+
+  namespace org.example.Tomorroio {
+    namespace model {
+      class org.example.Tomorroio.model.WeatherData {
+      }
+    }
+  }
+  
+
+  namespace org.example.Tomorroio {
+    namespace model {
+      interface org.example.Tomorroio.model.WeatherModel {
+      }
+    }
+  }
+  
+
+  namespace org.example.Tomorroio {
+    namespace model {
+      namespace factory {
+        class org.example.Tomorroio.model.factory.CloudCoverDatasetFactory {
+        }
+      }
+    }
+  }
+  
+
+  namespace org.example.Tomorroio {
+    namespace model {
+      namespace factory {
+        interface org.example.Tomorroio.model.factory.DatasetFactory {
+        }
+      }
+    }
+  }
+  
+
+  namespace org.example.Tomorroio {
+    namespace model {
+      namespace factory {
+        class org.example.Tomorroio.model.factory.HumidityDatasetFactory {
+        }
+      }
+    }
+  }
+  
+
+  namespace org.example.Tomorroio {
+    namespace model {
+      namespace factory {
+        class org.example.Tomorroio.model.factory.PressureDatasetFactory {
+        }
+      }
+    }
+  }
+  
+
+  namespace org.example.Tomorroio {
+    namespace model {
+      namespace factory {
+        class org.example.Tomorroio.model.factory.TemperatureDatasetFactory {
+        }
+      }
+    }
+  }
+  
+
+  namespace org.example.Tomorroio {
+    namespace model {
+      namespace factory {
+        class org.example.Tomorroio.model.factory.WindGustDatasetFactory {
+        }
+      }
+    }
+  }
+  
+
+  namespace org.example.Tomorroio {
+    namespace model {
+      namespace factory {
+        class org.example.Tomorroio.model.factory.WindSpeedDatasetFactory {
+        }
+      }
+    }
+  }
+  
+
+  namespace org.example.Tomorroio {
+    namespace view {
+      class org.example.Tomorroio.view.WeatherChartView {
+      }
+    }
+  }
+  
+
+  namespace org.example.Tomorroio {
+    namespace view {
+      interface org.example.Tomorroio.view.WeatherView {
+      }
+    }
+  }
+  
+
+  namespace org.example.Tomorroio {
+    namespace view {
+      namespace strategy {
+        class org.example.Tomorroio.view.strategy.BarChartStrategy {
+        }
+      }
+    }
+  }
+  
+
+  namespace org.example.Tomorroio {
+    namespace view {
+      namespace strategy {
+        interface org.example.Tomorroio.view.strategy.ChartStrategy {
+        }
+      }
+    }
+  }
+  
+
+  namespace org.example.Tomorroio {
+    namespace view {
+      namespace strategy {
+        class org.example.Tomorroio.view.strategy.LineChartStrategy {
+        }
+      }
+    }
+  }
+  
+
+  org.example.Tomorroio.GraphTypeSelectionView -right-|> javax.swing.JFrame
+  org.example.Tomorroio.controller.WeatherChartController .up.|> org.example.Tomorroio.controller.WeatherController
+  org.example.Tomorroio.controller.WeatherChartController o-- org.example.Tomorroio.view.WeatherView : chartView
+  org.example.Tomorroio.controller.WeatherChartController o-- org.example.Tomorroio.model.factory.CloudCoverDatasetFactory : cloudCoverDatasetFactory
+  org.example.Tomorroio.controller.WeatherChartController o-- org.example.Tomorroio.model.factory.HumidityDatasetFactory : humidityDatasetFactory
+  org.example.Tomorroio.controller.WeatherChartController o-- org.example.Tomorroio.model.factory.PressureDatasetFactory : pressureDatasetFactory
+  org.example.Tomorroio.controller.WeatherChartController o-- org.example.Tomorroio.model.factory.TemperatureDatasetFactory : temperatureDatasetFactory
+  org.example.Tomorroio.controller.WeatherChartController o-- org.example.Tomorroio.model.WeatherData : weatherData
+  org.example.Tomorroio.controller.WeatherChartController o-- org.example.Tomorroio.model.factory.WindGustDatasetFactory : windGustDatasetFactory
+  org.example.Tomorroio.controller.WeatherChartController o-- org.example.Tomorroio.model.factory.WindSpeedDatasetFactory : windSpeedDatasetFactory
+  org.example.Tomorroio.model.WeatherData .up.|> org.example.Tomorroio.model.WeatherModel
+  org.example.Tomorroio.model.factory.CloudCoverDatasetFactory .down.|> org.example.Tomorroio.model.factory.DatasetFactory
+  org.example.Tomorroio.model.factory.HumidityDatasetFactory .down.|> org.example.Tomorroio.model.factory.DatasetFactory
+  org.example.Tomorroio.model.factory.PressureDatasetFactory .down.|> org.example.Tomorroio.model.factory.DatasetFactory
+  org.example.Tomorroio.model.factory.TemperatureDatasetFactory .down.|> org.example.Tomorroio.model.factory.DatasetFactory
+  org.example.Tomorroio.model.factory.WindGustDatasetFactory .down.|> org.example.Tomorroio.model.factory.DatasetFactory
+  org.example.Tomorroio.model.factory.WindSpeedDatasetFactory .down.|> org.example.Tomorroio.model.factory.DatasetFactory
+  org.example.Tomorroio.view.WeatherChartView .left.|> org.example.Tomorroio.view.WeatherView
+  org.example.Tomorroio.view.WeatherChartView -up-|> javax.swing.JFrame
+  org.example.Tomorroio.view.WeatherChartView o-- org.example.Tomorroio.view.strategy.ChartStrategy : chartStrategy
+  org.example.Tomorroio.view.WeatherChartView o-- org.example.Tomorroio.model.WeatherData : weatherData
+  org.example.Tomorroio.view.strategy.BarChartStrategy .up.|> org.example.Tomorroio.view.strategy.ChartStrategy
+  org.example.Tomorroio.view.strategy.LineChartStrategy .up.|> org.example.Tomorroio.view.strategy.ChartStrategy
+
+@enduml
