@@ -66,13 +66,13 @@ La clase `LineChartStrategy` implementa la interfaz `ChartStrategy`. Es una estr
 La clase `BarChartStrategy` es una implementación concreta de `ChartStrategy` especializada en la creación de gráficos de barras. Hereda de `LineChartStrategy` y proporciona la implementación específica para crear gráficos de barras utilizando JFreeChart.
 
 \subsection{Clase WeatherData}
-La clase `WeatherData` implementa la interfaz `Subject` y representa un sujeto concreto en el patrón de diseño Observador. Proporciona métodos para registrar, eliminar y notificar observadores. También proporciona métodos para establecer y obtener los datos meteorológicos actuales.
+La clase `WeatherData` implementa la interfaz `Observable` y proporciona métodos para obtener datos meteorológicos actualizados de la API de Tomorrow.io. También proporciona métodos para crear conjuntos de datos utilizando `DatasetFactory`.
 
 \subsection{Clase DatasetFactory}
 La interfaz `DatasetFactory` define el contrato para las factorías de conjuntos de datos. A través de esta interfaz, especificamos los métodos necesarios que las factorías concretas deben implementar para la creación de conjuntos de datos.
 
 \subsubsection{Clase TemperatureDatasetFactory}
-La clase `TemperatureDatasetFactory` es una implementación concreta de `DatasetFactory` especializada en la creación de conjuntos de datos para la temperatura.Proporciona la implementación específica para este tipo de dato meteorológico.
+La clase `TemperatureDatasetFactory` implementa `DatasetFactory` y se especializa en la creación de conjuntos de datos para la temperatura. Proporciona la implementación necesaria para este tipo de dato meteorológico.
 
 \subsubsection{Clase HumedityDatasetFactory}
 La clase `HumedityDatasetFactory` implementa `DatasetFactory` y se especializa en la creación de conjuntos de datos para la humedad.  Proporciona la implementación necesaria para este tipo de dato meteorológico.
