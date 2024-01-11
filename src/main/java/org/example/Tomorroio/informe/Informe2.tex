@@ -45,60 +45,64 @@ En la figura \ref{fig:estructura-proyecto} podemos observar la estructura de nue
 
 \section{Estructura del Código}
 \subsection{Clase WeatherApp}
-Este archivo es el punto de entrada principal de la aplicación. Utiliza Swing para crear la interfaz de usuario y permite al usuario seleccionar la ciudad y el tipo de gráfico. Inicia la aplicación mediante la creación de instancias de las vistas y controladores necesarios.
+Clase principal que contiene el método main. Crea una instancia de WeatherChartController y muestra la vista.
 
 \subsection{Clase WeatherView}
-Interfaz que define el método updateChart para actualizar los gráficos.
+Interfaz que define el contrato para las vistas de la aplicación. Proporciona métodos para mostrar la vista y actualizar los gráficos con nuevos conjuntos de datos.
 
 \subsubsection{Clase WeatherChartView}
-Implementa la interfaz WeatherView. Crea y muestra una ventana que contiene gráficos JFreeChart. Utiliza estrategias de gráficos (ChartStrategy) para determinar el tipo de gráfico (líneas o barras). Proporciona métodos para agregar paneles de gráficos y actualizar los datos de los gráficos.
+Implementa la interfaz WeatherView. Crea y muestra una ventana que contiene un gráfico. Proporciona métodos para actualizar el gráfico con nuevos conjuntos de datos.
 
 \subsection{Clase GraphTypeSelectionView}
-Crea una ventana Swing para que el usuario seleccione el tipo de gráfico y la ciudad.
+Crea y muestra una ventana que permite al usuario seleccionar el tipo de gráfico y la ciudad. Proporciona métodos para obtener la ciudad y el tipo de gráfico seleccionados por el usuario.
 
 \subsection{Clase ChartStrategy}
-Interfaz que define el contrato para las estrategias de creación de gráficos.
+La interfaz `ChartStrategy` define el contrato para las estrategias de gráficos. A través de esta interfaz, especificamos los métodos necesarios que las estrategias concretas deben implementar para la creación de gráficos.
 
 \subsubsection{Clase LineChartStrategy}
-Implementa la interfaz ChartStrategy. Proporciona una estrategia específica para crear un gráfico de líneas utilizando JFreeChart.
+La clase `LineChartStrategy` implementa la interfaz `ChartStrategy`. Es una estrategia abstracta que proporciona métodos específicos para crear un gráfico de líneas utilizando JFreeChart.
 
 \subsubsection{Clase BarChartStrategy}
-Implementa la interfaz ChartStrategy. Proporciona una estrategia específica para crear un gráfico de barras utilizando JFreeChart.
+La clase `BarChartStrategy` es una implementación concreta de `ChartStrategy` especializada en la creación de gráficos de barras. Hereda de `LineChartStrategy` y proporciona la implementación específica para crear gráficos de barras utilizando JFreeChart.
 
 \subsection{Clase WeatherData}
-Implementa la interfaz WeatherModel. Obtiene datos meteorológicos de la API de Tomorrow.io utilizando la biblioteca Unirest. Convierte y almacena los datos en series temporales (XYSeries) para su uso en los gráficos.
+La clase `WeatherData` implementa la interfaz `Subject` y representa un sujeto concreto en el patrón de diseño Observador. Proporciona métodos para registrar, eliminar y notificar observadores. También proporciona métodos para establecer y obtener los datos meteorológicos actuales.
 
 \subsection{Clase DatasetFactory}
-La interfaz `DatasetFactory` define el contrato para las fábricas de conjuntos de datos meteorológicos. A través de esta interfaz, especificamos los métodos necesarios que las factorías concretas deben implementar para la creación de conjuntos de datos.
-
-\subsubsection{Clase XDatasetFactory}
-La clase `XDatasetFactory` implementa la interfaz `DatasetFactory`. Es una factoría abstracta que proporciona métodos específicos para crear conjuntos de datos basados en el tipo de dato meteorológico. Esta factoría concreta se especializa en la creación de conjuntos de datos de tipo `XYSeriesCollection`.
+La interfaz `DatasetFactory` define el contrato para las factorías de conjuntos de datos. A través de esta interfaz, especificamos los métodos necesarios que las factorías concretas deben implementar para la creación de conjuntos de datos.
 
 \subsubsection{Clase TemperatureDatasetFactory}
-La clase `TemperatureDatasetFactory` es una implementación concreta de `DatasetFactory` especializada en la creación de conjuntos de datos para la temperatura. Hereda de `XDatasetFactory` y proporciona la implementación específica para crear conjuntos de datos de temperatura.
+La clase `TemperatureDatasetFactory` es una implementación concreta de `DatasetFactory` especializada en la creación de conjuntos de datos para la temperatura.Proporciona la implementación específica para este tipo de dato meteorológico.
 
 \subsubsection{Clase HumedityDatasetFactory}
-La clase `HumedityDatasetFactory` es otra implementación concreta de `DatasetFactory`. Al igual que las otras factorías, hereda de `XDatasetFactory` y se centra en la creación de conjuntos de datos para la probabilidad de Humedad.
+La clase `HumedityDatasetFactory` implementa `DatasetFactory` y se especializa en la creación de conjuntos de datos para la humedad.  Proporciona la implementación necesaria para este tipo de dato meteorológico.
 
 \subsubsection{Clase WindSpeedDatasetFactory}
-La clase `WindSpeedDatasetFactory` implementa `DatasetFactory` y se especializa en la creación de conjuntos de datos para la velocidad del viento. También hereda de `XDatasetFactory` y proporciona la implementación necesaria para este tipo de dato meteorológico.
+La clase `WindSpeedDatasetFactory` es una implementación concreta de `DatasetFactory` especializada en la creación de conjuntos de datos para la velocidad del viento.Proporciona la implementación específica para este tipo de dato meteorológico.
 
 \subsubsection{Clase PressureDatasetFactory}
-La clase `PressureDatasetFactory` es una implementación concreta para la creación de conjuntos de datos relacionados con la presión atmosférica. Al igual que las otras factorías, hereda de `XDatasetFactory` y ofrece la implementación específica para datos de presión.
+La clase `PressureDatasetFactory` implementa `DatasetFactory` y se especializa en la creación de conjuntos de datos para la presión atmosférica. Proporciona la implementación necesaria para este tipo de dato meteorológico.
+
+\subsubsection{Clase WindGustDatasetFactory}
+La clase `WindGustDatasetFactory` es una implementación concreta de `DatasetFactory` especializada en la creación de conjuntos de datos para la ráfaga de viento.Proporciona la implementación específica para este tipo de dato meteorológico.
 
 \subsubsection{Clase CloudCoverDatasetFactory}
-La clase `CloudCoverDatasetFactory` implementa `DatasetFactory` y se encarga de la creación de conjuntos de datos para la cobertura de nubes. Hereda de `XDatasetFactory` y proporciona la implementación necesaria para este tipo de dato meteorológico.
+La clase `CloudCoverDatasetFactory` implementa `DatasetFactory` y se especializa en la creación de conjuntos de datos para la cobertura de nubes. Proporciona la implementación necesaria para este tipo de dato meteorológico.
+
 
 Estas clases concretas de factorías implementan métodos específicos para la creación de conjuntos de datos relacionados con sus respectivos tipos de datos meteorológicos. Al emplear el patrón Abstract Factory, logramos una estructura modular que facilita la extensión del sistema al agregar nuevos tipos de datos meteorológicos en el futuro.
 
 \subsection{Clase WeatherChartController}
-Implementa la interfaz WeatherController. Coordina la actualización de los gráficos mediante la creación de instancias de las fábricas de conjuntos de datos y la actualización de la vista. El proyecto utiliza de manera efectiva patrones de diseño como el patrón Estrategia para los diferentes tipos de gráficos y el patrón Fábrica para la creación de conjuntos de datos meteorológicos.
+La clase `WeatherChartController` es el controlador principal de la aplicación. Implementa la interfaz `Observer` y proporciona métodos para actualizar la vista con nuevos conjuntos de datos. También proporciona métodos para obtener datos meteorológicos actualizados de `WeatherData` y crear conjuntos de datos utilizando `DatasetFactory`.
+
+\subsection{WeatherController}
+La interfaz `WeatherController` define el contrato para los controladores de la aplicación. A través de esta interfaz, especificamos los métodos necesarios que los controladores concretos deben implementar para la gestión de la aplicación.
 
 \section{Patrones}
 En esta práctica usamos varios patrones que hemos visto a lo largo de la asignatura, como puede ser el patrón estrategia, el abstract factory y el modelo de vista controlador que iremos señalando en el siguiente apartado:
 
 \subsection{Patrón Estrategia}
-El patrón de diseño Estrategia se ha utilizado para la elección de gráficos en la aplicación debido a su capacidad para encapsular algoritmos intercambiables y permitir que el cliente seleccione dinámicamente uno de ellos. Como podemos observar en la image 2, el usuario puede seleccionar la gráfica de líneas o la gráfica de barras.
+El patrón de diseño Estrategia se ha utilizado para implementar diferentes tipos de gráficos. Como se puede observar en la figura \ref{fig:image2}, la clase WeatherChartView utiliza una estrategia para crear un gráfico de líneas o de barras. Esto permite que la aplicación sea flexible y extensible, ya que podemos agregar nuevos tipos de gráficos en el futuro sin modificar el código existente.
 
 \begin{figure}[H]
   \centering
@@ -116,11 +120,26 @@ El patrón de diseño Abstract Factory se ha utilizado como se puede observar en
 \end{figure}
 
 \subsection{Patrón Modelo Vista Controlador}
-El patrón de diseño Modelo Vista Controlador se ha utilizado para separar por capas los diferentes modelos de la aplicación.
+El patrón de diseño Modelo Vista Controlador se ha utilizado para separar la lógica de la aplicación de la interfaz gráfica. Como se puede observar en la figura \ref{fig:image3}, la clase WeatherChartController actúa como el controlador principal de la aplicación. Implementa la interfaz WeatherController y proporciona métodos para actualizar la vista con nuevos conjuntos de datos.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=1.1\textwidth]{images/image3.png}
+  \includegraphics[width=0.5\textwidth]{images/image11.png}
+  \caption {Implementación Modelo}
+  \label{fig:image11}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{images/image12.png}
+  \caption {Implementación Vista}
+  \label{fig:image12}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{images/image3.png}
+  \caption {Implementación Controlador}
   \label{fig:image3}
 \end{figure}
 
@@ -128,15 +147,37 @@ El patrón de diseño Modelo Vista Controlador se ha utilizado para separar por 
 El programa sigue estos pasos:
 
 \begin{enumerate}
-  \item El usuario interactúa con la interfaz gráfica, seleccionando el tipo de gráfico y la ciudad en GraphTypeSelectionView.
-  \item GraphTypeSelectionView envía eventos al controlador (WeatherChartController).
-  \item WeatherChartController utiliza la información proporcionada por el usuario para obtener datos meteorológicos actualizados de WeatherData.
-  \item Se crean conjuntos de datos utilizando fábricas (DatasetFactory) para diferentes tipos de datos meteorológicos.
-  \item WeatherChartController actualiza la vista (WeatherChartView) con los nuevos conjuntos de datos.
+  \item El usuario selecciona el tipo de gráfico y la ciudad.
+  \item El controlador crea una instancia de la vista y la muestra.
+  \item La vista crea una instancia de la estrategia de gráfico seleccionada por el usuario.
+  \item La vista crea una instancia de la factoría de conjuntos de datos correspondiente al tipo de gráfico seleccionado por el usuario.
+  \item La vista crea un gráfico utilizando la estrategia de gráfico y el conjunto de datos.
+  \item La vista muestra el gráfico.
+  \item El controlador crea una instancia de WeatherData y se registra como observador.
+  \item WeatherData obtiene datos meteorológicos de la API de Tomorrow.io.
+  \item WeatherData notifica a los observadores registrados.
+  \item El controlador recibe la notificación y obtiene los datos meteorológicos de WeatherData.
+  \item El controlador crea un conjunto de datos utilizando la factoría de conjuntos de datos.
+  \item El controlador actualiza la vista con el nuevo conjunto de datos.
+  \item El usuario selecciona un nuevo tipo de gráfico y/o ciudad.
+  \item El controlador crea una instancia de la vista y la muestra.
+  \item La vista crea una instancia de la estrategia de gráfico seleccionada por el usuario.
+  \item La vista crea una instancia de la factoría de conjuntos de datos correspondiente al tipo de gráfico seleccionado por el usuario.
+  \item La vista crea un gráfico utilizando la estrategia de gráfico y el conjunto de datos.
+  \item La vista muestra el gráfico.
+  \item El controlador crea una instancia de WeatherData y se registra como observador.
+  \item WeatherData obtiene datos meteorológicos de la API de Tomorrow.io.
+  \item WeatherData notifica a los observadores registrados.
+  \item El controlador recibe la notificación y obtiene los datos meteorológicos de WeatherData.
+  \item El controlador crea un conjunto de datos utilizando la factoría de conjuntos de datos.
+  \item El controlador actualiza la vista con el nuevo conjunto de datos.
+  \item El usuario cierra la aplicación.
+  \item La vista se cierra.
+  \item El controlador se cierra.
 \end{enumerate}
 
 \section{Interfaz Gráfica para el Usuario}
-La interfaz gráfica incluye un formulario para que el usuario seleccione el tipo de gráficos como vemos en la figura \ref{fig:seleccion_ciudad}  y la ciudad de interés como vemos en la figura \ref{fig:seleccion_ciudad2}  y una pantalla para mostrar el historial de temperatura, precipitación, viento, presión y nubes, en la figura \ref{fig:seleccion_ciudad3} podemos ver un ejemplo para Tokio representado en líneas y en la figura \ref{fig:seleccion_ciudad4} para Tokio representado en barras, donde se actualiza en tiempo real la información.
+La interfaz gráfica para el usuario se muestra en las figuras \ref{fig:seleccion_ciudad}, \ref{fig:seleccion_ciudad2}, \ref{fig:seleccion_ciudad3} y \ref{fig:seleccion_ciudad4}.
 
 \begin{figure}[H]
     \centering
@@ -180,7 +221,7 @@ El diagrama UML del proyecto se muestra en la Figura \ref{fig:uml}.
 \end{figure}
 
 \section{Errores y Desafíos Encontrados}
-Durante el desarrollo de este proyecto, nos enfrentamos a varios desafíos que requirieron soluciones creativas y resolución de problemas. A continuación, destacamos algunos de los errores y desafíos más significativos y cómo abordamos cada uno:
+Durante el desarrollo del proyecto, nos enfrentamos a varios desafíos que nos permitieron mejorar nuestras habilidades de resolución de problemas y fortalecer la calidad general del sistema.
 
 \subsection{Conexión con la API de Tomorrow.io}
 Uno de los desafíos iniciales fue establecer una conexión efectiva con la API de Tomorrow.io para obtener datos meteorológicos en tiempo real. En algunos casos, experimentamos problemas de tiempo de espera y errores de conexión. Para superar esto, implementamos un manejo robusto de errores y optimizamos nuestras solicitudes para mejorar la eficiencia.
