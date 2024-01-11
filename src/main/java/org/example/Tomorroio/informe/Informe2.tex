@@ -147,33 +147,16 @@ El patrón de diseño Modelo Vista Controlador se ha utilizado para separar la l
 El programa sigue estos pasos:
 
 \begin{enumerate}
-  \item El usuario selecciona el tipo de gráfico y la ciudad.
-  \item El controlador crea una instancia de la vista y la muestra.
+  \item El usuario selecciona una ciudad y un tipo de gráfico.
+  \item El controlador principal crea una instancia de la vista y la muestra.
   \item La vista crea una instancia de la estrategia de gráfico seleccionada por el usuario.
   \item La vista crea una instancia de la factoría de conjuntos de datos correspondiente al tipo de gráfico seleccionado por el usuario.
-  \item La vista crea un gráfico utilizando la estrategia de gráfico y el conjunto de datos.
-  \item La vista muestra el gráfico.
-  \item El controlador crea una instancia de WeatherData y se registra como observador.
+  \item La vista crea un gráfico utilizando la estrategia y el conjunto de datos.
+  \item El controlador principal crea una instancia de WeatherData.
   \item WeatherData obtiene datos meteorológicos de la API de Tomorrow.io.
-  \item WeatherData notifica a los observadores registrados.
-  \item El controlador recibe la notificación y obtiene los datos meteorológicos de WeatherData.
-  \item El controlador crea un conjunto de datos utilizando la factoría de conjuntos de datos.
-  \item El controlador actualiza la vista con el nuevo conjunto de datos.
-  \item El usuario selecciona un nuevo tipo de gráfico y/o ciudad.
-  \item El controlador crea una instancia de la vista y la muestra.
-  \item La vista crea una instancia de la estrategia de gráfico seleccionada por el usuario.
-  \item La vista crea una instancia de la factoría de conjuntos de datos correspondiente al tipo de gráfico seleccionado por el usuario.
-  \item La vista crea un gráfico utilizando la estrategia de gráfico y el conjunto de datos.
-  \item La vista muestra el gráfico.
-  \item El controlador crea una instancia de WeatherData y se registra como observador.
-  \item WeatherData obtiene datos meteorológicos de la API de Tomorrow.io.
-  \item WeatherData notifica a los observadores registrados.
-  \item El controlador recibe la notificación y obtiene los datos meteorológicos de WeatherData.
-  \item El controlador crea un conjunto de datos utilizando la factoría de conjuntos de datos.
-  \item El controlador actualiza la vista con el nuevo conjunto de datos.
-  \item El usuario cierra la aplicación.
-  \item La vista se cierra.
-  \item El controlador se cierra.
+  \item El controlador principal recibe los datos meteorológicos actualizados y crea un conjunto de datos utilizando la factoría de conjuntos de datos.
+  \item El controlador principal actualiza la vista con el nuevo conjunto de datos.
+  \item El usuario puede seleccionar una nueva ciudad y un nuevo tipo de gráfico.
 \end{enumerate}
 
 \section{Interfaz Gráfica para el Usuario}
